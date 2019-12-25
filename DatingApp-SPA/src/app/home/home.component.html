@@ -11,8 +11,8 @@
   <div *ngIf="registerMode" class="container">
     <div class="row justify-content-center">
       <div class="col-4">
-        <!-- child component with valuesFromHome being passed to it-->
-        <app-register [valuesFromHome]="values"></app-register>
+        <!-- child component with valuesFromHome being passed to it and cancelRegisterMode is passing to parent (home)-->
+        <app-register [valuesFromHome]="values" (cancelRegister)="cancelRegisterMode($event)"></app-register>
       </div>
     </div>
   </div>
