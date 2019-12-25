@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace DatingApp.API.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
+    [ApiController] //helps infer [FromBody] and ModelState validity
     public class AuthController : ControllerBase
     {
         private readonly IAuthRespository _repo;
@@ -21,6 +21,11 @@ namespace DatingApp.API.Controllers
         public async Task<IActionResult> Register(UserForRegisterDto userForRegisterDto) 
         {
             //validate request
+
+            //don't need if [ApiController]
+            // if(!ModelState.IsValid) {
+            //     return BadRequest(ModelState);
+            // }
 
             userForRegisterDto.Username = userForRegisterDto.Username.ToLower();
 
