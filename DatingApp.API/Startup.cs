@@ -33,7 +33,7 @@ namespace DatingApp.API
             services.AddDbContext<DataContext>(x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllers();
             services.AddCors();
-            services.AddScoped<IAuthRespository, AuthRepository>();
+            services.AddScoped<IAuthRepository, AuthRepository>();
             //singleton = only one, bad for concurent requests
             //transient = good for stateless services, one instance of repo per request
             //scoped = creates one instance for that request but uses same instance for other calls of the same request
