@@ -38,6 +38,7 @@ namespace DatingApp.API
             services.AddControllers();
             services.AddCors();
             services.AddScoped<IAuthRepository, AuthRepository>();
+            services.AddScoped<IDatingRepository, DatingRepository>();
             //singleton = only one, bad for concurent requests
             //transient = good for stateless services, one instance of repo per request
             //scoped = creates one instance for that request but uses same instance for other calls of the same request
