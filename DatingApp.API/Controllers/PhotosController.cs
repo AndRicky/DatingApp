@@ -15,7 +15,7 @@ using Microsoft.Extensions.Options;
 namespace DatingApp.API.Controllers
 {
     [Authorize]
-    [Route("api/users/{userId}")]
+    [Route("api/users/{userId}/photos")]
     [ApiController]
     public class PhotosController : ControllerBase
     {
@@ -33,7 +33,7 @@ namespace DatingApp.API.Controllers
             _cloudinaryConfig = cloudinaryConfig;
 
             Account acc = new Account(
-                _cloudinaryConfig.Value.CloudName,
+                _cloudinaryConfig.Value.Cloud,
                 _cloudinaryConfig.Value.ApiKey,
                 _cloudinaryConfig.Value.ApiSecret
             );
@@ -53,7 +53,7 @@ namespace DatingApp.API.Controllers
 
         [HttpPost]
         public async Task<IActionResult> AddPhotoForUser(int userId, 
-            PhotoForCreationDto photoForCreationDto)
+            [FromForm]PhotoForCreationDto photoForCreationDto)
         {
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value)) 
             {
