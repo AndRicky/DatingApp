@@ -22,6 +22,7 @@ namespace DatingApp.API.Helpers
             this.AddRange(items);
         }
 
+        // where all the pagination happens
         public static async Task<PagedList<T>> CreateAsync(IQueryable<T> source, 
             int pageNumber, int pageSize)
             {
