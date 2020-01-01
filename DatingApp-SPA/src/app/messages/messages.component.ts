@@ -14,7 +14,7 @@ import { UserService } from '../_services/user.service';
 export class MessagesComponent implements OnInit {
   messages: Message[];
   pagination: Pagination;
-  messageContainer = 'Unread'
+  messageContainer = 'Unread';
 
   constructor(private userService: UserService, private authService: AuthService, 
               private route: ActivatedRoute, private alertify: AlertifyService) { }
@@ -37,7 +37,7 @@ export class MessagesComponent implements OnInit {
       });
   }
 
-  pagedChanged(event: any): void {
+  pageChanged(event: any): void {
     this.pagination.currentPage = event.page;
     this.loadMessages();
   }
