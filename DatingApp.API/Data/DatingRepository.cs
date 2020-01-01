@@ -149,9 +149,17 @@ namespace DatingApp.API.Data
                 messageParams.PageNumber, messageParams.PageSize);
         }
 
-        public Task<IEnumerable<Message>> GetMessageThread(int userId, int recipeientId)
+        public async Task<IEnumerable<Message>> GetMessageThread(int userId, int recipeientId)
         {
-            throw new NotImplementedException();
+            var messages = await _context.Messages
+                .Include(u => u.Sender).ThenInclude(p => p.Photos)
+                .Include(u => u.Recipient).ThenInclude(p => p.Photos)
+                .Where(m => m.RecipientId == userId && m.SenderId == recipeientId 
+                    || m.RecipientId == recipeientId && m.SenderId == userId)
+                .OrderByDescending(m => m.MessageSent)
+                .ToListAsync();
+
+                return messages;
         }
     }
 }
